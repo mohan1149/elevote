@@ -29,7 +29,7 @@ class HomeController extends Controller
 
     public function voters(){
         try{
-            $voters = DB::table('voters')->limit(100)->get();
+            $voters = DB::table('voters')->get();
             return view('voters.index',['voters'=>$voters]);
         }catch(\Exception $e){
             return $e->getMessage();
