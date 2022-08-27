@@ -25,7 +25,7 @@ class UserController extends Controller
         try {
             DB::table('voters')->where('id',$request['id'])->update([
                 'is_voted'=>1,
-                'voted_date'=>date('Y-m-d'),
+                'voted_date'=>date("y-m-d h:i:s"),
             ]);
             $data = [
                 'status'=>true,

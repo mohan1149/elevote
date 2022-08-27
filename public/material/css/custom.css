@@ -1,0 +1,14 @@
+.dataTables_wrapper .dataTables_filter label{
+    width: 100% !important;
+}
+.dataTables_wrapper .dataTables_filter input{
+    width: 100% !important;
+    padding: 10px;
+    border-radius: 30px;
+    padding-left: 20px;
+}
+.dataTables_wrapper .dataTables_filter{
+    clear: both;
+    float: none;
+    text-align: center;
+}

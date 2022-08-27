@@ -7,7 +7,11 @@
 				<div class="col-lg-12 col-md-12">
 					<div class="card">
 						<div class="card-header card-header-tabs card-header-primary">
-							<h3>Election Master</h3>
+							<div style="text-align: center">
+								<h4>Committe ID - {{ auth()->user()->CommitteeID }}</h4>
+								<h4>Voted       - {{ $voted }}</h4>
+								<h4>Not Voted   - {{ $notvoted }}</h4>
+							</div>
 						</div>
 						<div class="card-body">
 							<table class="table" id="voters_table">
@@ -43,12 +47,14 @@
 											<td>{{ $voter->voted_date }}</td>
 											<td>
 												<div class="d-flex">
+													@if ($voter->is_voted == 0)
 													<button onclick="markAsVoted({{$voter->id}})" class="btn btn-primary btn-fab btn-fab-mini btn-round">
 														<i class="material-icons">check</i>
 													</button>
-													<button onclick="markAsNotVoted({{$voter->id}})" class="btn btn-danger btn-fab btn-fab-mini btn-round">
+													@endif
+													{{-- <button onclick="markAsNotVoted({{$voter->id}})" class="btn btn-danger btn-fab btn-fab-mini btn-round">
 														<i class="material-icons">close</i>
-													</button>
+													</button> --}}
 												</div>
 											</td>
 										</tr>
@@ -67,6 +73,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#voters_table').DataTable();
+			// $('.search').append($("#voters_table_filter").html());
 		});
 		function markAsVoted(id){
 			$.ajax({
