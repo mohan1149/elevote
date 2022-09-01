@@ -43,4 +43,17 @@ class HomeController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function reports(){
+        try{
+            DB::statement("SET SQL_MODE=''");
+            $data =DB::table('voters')
+            ->selectRaw("committee,count(id) as total,location,sum(is_voted=1) as voted,sum(is_voted=0) as notvoted")
+            ->groupBy('committee')
+            ->get();
+            return view('voters.reports',['data'=>$data]);
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+    }
 }

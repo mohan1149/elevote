@@ -36,12 +36,23 @@
           </ul>
         </div>
       </li> --}}
-      <li class="nav-item{{ $activePage == 'voters' ? ' active' : '' }}">
-        <a class="nav-link" href="/voters">
-          <i class="material-icons">people</i>
-          <p>{{ __('t.voters') }}</p>
-        </a>
-      </li>
+      @if (auth()->user()->admin == 0)
+        <li class="nav-item{{ $activePage == 'voters' ? ' active' : '' }}">
+          <a class="nav-link" href="/voters">
+            <i class="material-icons">people</i>
+            <p>{{ __('t.voters') }}</p>
+          </a>
+        </li>
+      @endif
+      @if (auth()->user()->admin == 1)
+        <li class="nav-item{{ $activePage == 'reports' ? ' active' : '' }}">
+          <a class="nav-link" href="/reports">
+            <i class="material-icons">people</i>
+            <p>{{ __('t.reports') }}</p>
+          </a>
+        </li>
+      @endif
+     
     </ul>
   </div>
 </div>
